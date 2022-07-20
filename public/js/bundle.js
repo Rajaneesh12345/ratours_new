@@ -8931,6 +8931,7 @@ if (loginForm) loginForm.addEventListener('submit', function (e) {
   var email = document.getElementById('email').value;
   var password = document.getElementById('password').value;
   (0, _login.login)(email, password);
+  console.log(password, email);
 });
 if (logOutBtn) logOutBtn.addEventListener('click', _login.logout);
 if (signupForm) signupForm.addEventListener('submit', function (e) {
@@ -8939,6 +8940,7 @@ if (signupForm) signupForm.addEventListener('submit', function (e) {
   var email = document.getElementById('email').value;
   var password = document.getElementById('password').value;
   var passwordConfirm = document.getElementById('passwordConfirm').value;
+  console.log(name, email);
   (0, _signUp.signup)(name, email, password, passwordConfirm);
 });
 if (userDataForm) userDataForm.addEventListener('submit', function (e) {
@@ -8946,8 +8948,8 @@ if (userDataForm) userDataForm.addEventListener('submit', function (e) {
   var form = new FormData();
   form.append('name', document.getElementById('name').value);
   form.append('email', document.getElementById('email').value);
-  form.append('photo', document.getElementById('photo').files[0]); // console.log(form);
-
+  form.append('photo', document.getElementById('photo').files[0]);
+  console.log(form);
   (0, _updateSettings.updateSettings)(form, 'data');
 });
 if (userPasswordForm) userPasswordForm.addEventListener('submit', /*#__PURE__*/function () {
@@ -9020,7 +9022,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54602" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54939" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
