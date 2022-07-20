@@ -13,12 +13,10 @@ export const updateSettings = async (data, type) => {
     const res = await axios({
       method: 'PATCH',
       url,
-      data
+      data,
     });
 
-    if (res.data.status === 'success') {
-      showAlert('success', `${type.toUpperCase()} updated successfully!`);
-    }
+    if (res.data.status === 'success') location.reload(true);
   } catch (err) {
     showAlert('error', err.response.data.message);
   }
