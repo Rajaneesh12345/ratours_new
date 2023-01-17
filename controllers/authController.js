@@ -37,18 +37,29 @@ const createSendToken = (user, statusCode, req, res) => {
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
-  const newUser = await User.create({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    passwordConfirm: req.body.passwordConfirm,
-  });
+  // console.log(req.body)
+  try{
+    const newUser = new User({
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+      passwordConfirm: req.body.passwordConfirm,
+    });
+    await newUser.save()
+    console.log(newUser)
+    createSendToken(newUser, 201, req, res);
+  }catch(e){
+    console.log(e)
+    res.status(400).json({
+      status: 'fail',
+      message: e
+    })
+  }
 
   // const url = `${req.protocol}://${req.get('host')}/me`;
   // console.log(url);
   // await new Email(newUser, url).sendWelcome();
 
-  createSendToken(newUser, 201, req, res);
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -79,7 +90,7 @@ exports.logout = (req, res) => {
 
 exports.protect = catchAsync(async (req, res, next) => {
   // 1) Getting token and check of it's there
-  let token;
+  let token = req.body.token || "";
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')

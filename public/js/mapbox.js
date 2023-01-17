@@ -7,15 +7,11 @@ export const displayMap = (locations) => {
     container: 'map',
     style: 'mapbox://styles/jonasschmedtmann/cjvi9q8jd04mi1cpgmg7ev3dy',
     scrollZoom: false,
-    // center: [-118.113491, 34.111745],
-    // zoom: 10,
-    // interactive: false
   });
 
   const bounds = new mapboxgl.LngLatBounds();
 
   locations.forEach((loc) => {
-    // Create marker
     const el = document.createElement('div');
     el.className = 'marker';
 
